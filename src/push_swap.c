@@ -6,11 +6,35 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:03:17 by tsantana          #+#    #+#             */
-/*   Updated: 2024/04/24 14:58:39 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/04/25 11:41:14 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+static void	init_data(t_stacks *stack)
+{
+	t_ps_list	*lst_a;
+
+	lst_a = stack->stack_a;
+	stack->sup.head_a = lst_a;
+	stack->minim = lst_a->numb;
+	stack->maxm = lst_a->numb;
+	while (lst_a)
+	{
+		if (lst_a->numb > stack->maxm)
+			stack->maxm = lst_a->numb;
+		if (lst_a->numb < stack->minim)
+			stack->minim = lst_a->numb;
+		lst_a = lst_a->next;
+	}
+	stack->pivot = ((stack->minim + stack->maxm) / 2);
+	stack->sup.end_a = lst_a;
+	lst_a = stack->stack_a;
+	while (lst_a->numb != stack->maxm)
+		lst_a = lst_a->next;
+	stack->sup.end_b = lst_a;
+}
 
 static void	free_stacks(t_stacks stack)
 {
@@ -62,13 +86,18 @@ int main	(int argc, char *argv[])
 {
 	t_stacks	stacks;
 
-	stacks = (t_stacks){NULL};
+	stacks = (t_stacks){0};
+	stacks.stack_b = NULL;
+	stacks.stack_a = NULL;
 	if (argc < 3)
 		return (return_error(5), 1);
 	if (validation_args(argv) == 1)
 		return (1);
 	stacks.stack_a = make_stack_a(argv);
+	init_data(&stacks);
 	print_lst(stacks.stack_a);
+	divide_stack(&stacks);
+	print_lst(stacks.stack_b);
 	free_stacks(stacks);
 	return (0);	
 }

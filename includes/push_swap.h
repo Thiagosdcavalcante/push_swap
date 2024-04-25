@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:05:56 by tsantana          #+#    #+#             */
-/*   Updated: 2024/04/24 14:52:05 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/04/25 11:27:09 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_support
 
 typedef struct s_stacks
 {
+	long int	minim;
+	long int	maxm;
 	long int	pivot;
 	t_sup		sup;
 	t_ps_list	*stack_a;
@@ -50,16 +52,17 @@ enum e_position
 int		check_args(char *arg);
 int		validation_args(char *args[]);
 int		ft_atol(const char *nptr);
-void	move_pa(t_stacks *stack);
-void	move_pb(t_stacks *stack);
-void	move_sa(t_stacks *stack);
-void	move_sb(t_stacks *stack);
+void	divide_stack(t_stacks *stk);
+void	move_pa(t_ps_list *node, t_stacks *stk);
+void	move_pb(t_ps_list *node, t_stacks *stk);
+void	move_sa(t_ps_list *stack_a);
+void	move_sb(t_ps_list *stack_b);
 void	move_ss(t_stacks *stack);
-void	move_rb(t_stacks *stack);
-void	move_ra(t_stacks *stack);
+void	move_rb(t_ps_list *stack_b);
+void	move_ra(t_ps_list *stack_a);
 void	move_rr(t_stacks *stack);
-void	move_rra(t_stacks *stack);
-void	move_rrb(t_stacks *stack);
+void	move_rra(t_ps_list *stack_a);
+void	move_rrb(t_ps_list *stack_b);
 void	move_rrr(t_stacks *stack);
 void	return_error(int error);
 t_ps_list	*new_node(int numb);

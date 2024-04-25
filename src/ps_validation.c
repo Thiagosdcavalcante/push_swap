@@ -6,39 +6,30 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:54:48 by tsantana          #+#    #+#             */
-/*   Updated: 2024/04/24 14:58:36 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/04/25 11:41:09 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	equal_numbs(t_ps_list *lst)
+void	divide_stack(t_stacks *stk)
 {
-	long int	target;
-	t_ps_list	*head;
-	t_ps_list	*check_lst;
-	int			i;
-	int			j;
+	t_ps_list *lst;
+	t_ps_list *temp;
 
-	i = 0;
-	head = lst;
-	check_lst = lst;
-	while (check_lst)
+	lst = stk->stack_a;
+	while (lst)
 	{
-		target = check_lst->numb;
-		j = 0;
-		head = lst;
-		while (head)
+		if (lst->numb > stk->pivot)
 		{
-			if (head->numb == target && (i != j))
-				return (1);
-			head = head->next;
-			j++;
+		   	ft_printf("PIVOT: %d NUMB: %d\n", stk->pivot, lst->numb);
+		   	lst = lst->next;
+			temp = lst->prev;
+		   	move_pb(temp, stk);
 		}
-		check_lst = check_lst->next;
-		i++;
+		else
+			lst = lst->next;
 	}
-	return (0);
 }
 
 static int	validation_item(char *argv)

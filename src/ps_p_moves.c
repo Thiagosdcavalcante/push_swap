@@ -6,36 +6,30 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 17:50:16 by tsantana          #+#    #+#             */
-/*   Updated: 2024/04/23 16:42:26 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/04/25 11:24:45 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	move_pa(t_stacks *stack)
+void	move_pa(t_ps_list *node, t_stacks *stk)
 {
-	t_ps_list	*temp;
-
-	if (!stack->stack_b)
+	if (!stk->stack_b)
 		return ;
-	temp = stack->stack_b;
-	stack->stack_b = stack->stack_b->next;
-	temp->next = stack->stack_a;
-	stack->stack_a = temp;
-	stack->stack_b->prev = NULL;
+	stk->stack_b = stk->stack_b->next;
+	stk->stack_b->prev = NULL;
+	node->next = stk->stack_a;
+	stk->stack_a = node;
 	write (1, "PA\n", 3);
 }
 
-void	move_pb(t_stacks *stack)
+void	move_pb(t_ps_list *node, t_stacks *stk)
 {
-	t_ps_list	*temp;
-
-	if (!stack->stack_b)
+	if (!stk->stack_a)
 		return ;
-	temp = stack->stack_a;
-	stack->stack_a = stack->stack_a->next;
-	temp->next = stack->stack_b;
-	stack->stack_b = temp;
-	stack->stack_a->prev = NULL;
+	stk->stack_a = stk->stack_a->next;
+	stk->stack_a->prev = NULL;
+	node->next = stk->stack_b;
+	stk->stack_b = node;
 	write (1, "PB\n", 3);
 }
