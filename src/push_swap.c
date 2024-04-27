@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:03:17 by tsantana          #+#    #+#             */
-/*   Updated: 2024/04/25 11:41:14 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/04/27 14:54:28 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,10 @@ static void	print_lst(t_ps_list *lst)
 {
 	while (lst)
 	{
-		ft_printf("%d\n", lst->numb);
+		ft_printf("%d  ", lst->numb);
 		lst = lst->next;
 	}
+	write (1, "\n", 1);
 }
 
 static t_ps_list	*make_stack_a(char **arg)

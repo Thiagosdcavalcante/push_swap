@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:54:48 by tsantana          #+#    #+#             */
-/*   Updated: 2024/04/25 11:41:09 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/04/27 14:54:30 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	divide_stack(t_stacks *stk)
 		if (lst->numb > stk->pivot)
 		{
 		   	ft_printf("PIVOT: %d NUMB: %d\n", stk->pivot, lst->numb);
-		   	lst = lst->next;
+			if (lst->next != NULL)
+			   	lst = lst->next;
 			temp = lst->prev;
 		   	move_pb(temp, stk);
 		}
