@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 17:50:16 by tsantana          #+#    #+#             */
-/*   Updated: 2024/04/27 14:51:29 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/04/27 15:22:01 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 void	move_pa(t_ps_list *node, t_stacks *stk)
 {
-	t_ps_list	*temp;
-
 	if (!stk->stack_b)
 		return ;
-	temp = stk->stack_b;
-	while (temp && temp->next && (temp->numb != node->next->numb))
-		temp = temp->next;
-	temp->prev = NULL;
-	stk->stack_b = temp;
+	if (node->prev)
+		node->prev->next = node->next;
+	else
+		stk->stack_b = node->next;
+	if (node->next)
+		node->next->prev = node->prev;
 	node->prev = NULL;
 	node->next = stk->stack_a;
 	stk->stack_a = node;
@@ -31,15 +30,14 @@ void	move_pa(t_ps_list *node, t_stacks *stk)
 
 void	move_pb(t_ps_list *node, t_stacks *stk)
 {
-	t_ps_list	*temp;
-
 	if (!stk->stack_a)
 		return ;
-	temp = stk->stack_a;
-	while (temp && temp->next && (temp->numb != node->next->numb))
-		temp = temp->next;
-	temp->prev = NULL;
-	stk->stack_a = temp;
+	if (node->prev)
+		node->prev->next = node->next;
+	else
+		stk->stack_a = node->next;
+	if (node->next)
+		node->next->prev = node->prev;
 	node->prev = NULL;
 	node->next = stk->stack_b;
 	stk->stack_b = node;
