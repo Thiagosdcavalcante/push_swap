@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:05:56 by tsantana          #+#    #+#             */
-/*   Updated: 2024/04/27 14:49:14 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/05 17:05:56 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,20 @@ enum e_position
 int		check_args(char *arg);
 int		validation_args(char *args[]);
 int		ft_atol(const char *nptr);
+int		find_target(t_ps_list *lst);
+void	minor_to_b(t_stacks *stk);
+void	b_back_to_a(t_stacks *stk);
+void	put_sup(t_stacks **stks);
+void	ps_mvs_conditions(t_stacks **stks);
 void	divide_stack(t_stacks *stk);
-void	move_pa(t_ps_list *node, t_stacks *stk);
-void	move_pb(t_ps_list *node, t_stacks *stk);
+void	move_pa(t_stacks **stk);
+void	move_pb(t_stacks **stk);
 void	move_sa(t_ps_list *stack_a);
 void	move_sb(t_ps_list *stack_b);
 void	move_ss(t_stacks *stack);
-void	move_rb(t_ps_list *stack_b);
-void	move_ra(t_ps_list *stack_a);
-void	move_rr(t_stacks *stack);
-void	move_rra(t_ps_list *stack_a);
-void	move_rrb(t_ps_list *stack_b);
+void	rotate(int c, t_ps_list **stack);
+void	move_rra(t_ps_list **stack_a);
+void	move_rrb(t_ps_list **stack_b);
 void	move_rrr(t_stacks *stack);
 void	return_error(int error);
 t_ps_list	*new_node(int numb);

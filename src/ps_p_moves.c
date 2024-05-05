@@ -6,40 +6,58 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 17:50:16 by tsantana          #+#    #+#             */
-/*   Updated: 2024/04/27 15:22:01 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/04 20:56:55 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	move_pa(t_ps_list *node, t_stacks *stk)
+void	move_pa(t_stacks **stk)
 {
-	if (!stk->stack_b)
+		t_ps_list	*tmp;
+
+	if (!(*stk)->stack_b)
 		return ;
-	if (node->prev)
-		node->prev->next = node->next;
+	tmp =(*stk)->stack_b;
+	(*stk)->stack_b = (*stk)->stack_b->next;
+	if ((*stk)->stack_b)
+		(*stk)->stack_b->prev = NULL;
+	if ((*stk)->stack_a == NULL)
+	{
+		(*stk)->stack_a = tmp;
+		tmp->next = NULL;
+	}
 	else
-		stk->stack_b = node->next;
-	if (node->next)
-		node->next->prev = node->prev;
-	node->prev = NULL;
-	node->next = stk->stack_a;
-	stk->stack_a = node;
-	write (1, "PA\n", 3);
+	{
+		tmp->next = (*stk)->stack_a;
+		tmp->next->prev = tmp;
+		(*stk)->stack_a = tmp;
+	}
+	(*stk)->stack_a = tmp;
+	write (1, "pa\n", 3);
 }
 
-void	move_pb(t_ps_list *node, t_stacks *stk)
+void	move_pb(t_stacks **stk)
 {
-	if (!stk->stack_a)
+	t_ps_list	*tmp;
+
+	if (!(*stk)->stack_a)
 		return ;
-	if (node->prev)
-		node->prev->next = node->next;
+	tmp =(*stk)->stack_a;
+	(*stk)->stack_a = (*stk)->stack_a->next;
+	if ((*stk)->stack_a)
+		(*stk)->stack_a->prev = NULL;
+	if ((*stk)->stack_b == NULL)
+	{
+		(*stk)->stack_b = tmp;
+		tmp->next = NULL;
+	}
 	else
-		stk->stack_a = node->next;
-	if (node->next)
-		node->next->prev = node->prev;
-	node->prev = NULL;
-	node->next = stk->stack_b;
-	stk->stack_b = node;
-	write (1, "PB\n", 3);
+	{
+		tmp->next = (*stk)->stack_b;
+		tmp->next->prev = tmp;
+		(*stk)->stack_b = tmp;
+	}
+	(*stk)->stack_b = tmp;
+	write (1, "pb\n", 3);
 }

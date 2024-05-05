@@ -6,7 +6,7 @@
 #    By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 16:52:41 by tsantana          #+#    #+#              #
-#    Updated: 2024/04/23 20:26:35 by tsantana         ###   ########.fr        #
+#    Updated: 2024/05/04 16:04:35 by tsantana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ SRC		:= src/push_swap.c \
 		   src/ps_p_moves.c \
 		   src/ps_error.c \
 		   src/list_work.c \
-		   src/ft_atol.c
+		   src/ft_atol.c \
+		   src/ps_utils.c \
+		   src/ps_utils_2.c
 
 OBJ		:= $(SRC:%.c=%.o)
 

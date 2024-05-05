@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:54:48 by tsantana          #+#    #+#             */
-/*   Updated: 2024/04/27 15:16:43 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/04 15:54:07 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,22 @@
 void	divide_stack(t_stacks *stk)
 {
 	t_ps_list *lst;
-	t_ps_list *temp;
 
-	lst = stk->stack_a;
-	while (lst)
+	lst = stk->sup.end_a;
+	while (lst->numb != stk->stack_a->numb)
 	{
-		if (lst->numb > stk->pivot)
+		if (stk->stack_a->numb > stk->pivot)
 		{
-		   	ft_printf("PIVOT: %d NUMB: %d    ", stk->pivot, lst->numb);
-			lst = lst->next;
-			temp = lst->prev;
-		   	move_pb(temp, stk);
+			move_pb(&stk);
+			put_sup(&stk);
+			if (stk->stack_b->next)
+				ps_mvs_conditions(&stk);
 		}
 		else
-			lst = lst->next;
+			rotate(1, &stk->stack_a);
 	}
+	if (stk->stack_a->numb > stk->pivot)
+		move_pb(&stk);
 }
 
 static int	validation_item(char *argv)
