@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:03:17 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/05 17:16:54 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/05 21:59:42 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,34 @@ static void	init_data(t_stacks *stack)
 	stack->sup.head_b = NULL;
 }
 
-static void	free_stacks(t_stacks stack)
+static void	free_stacks(t_stacks *stack)
 {
 	t_ps_list *temp;
 
-	if (stack.stack_a)
-		while (stack.stack_a)
+	if (stack->stack_a)
+	{
+		while (stack->stack_a)
 		{
-			temp = stack.stack_a;
-			stack.stack_a = stack.stack_a->next;
+			temp = stack->stack_a;
+			stack->stack_a = stack->stack_a->next;
 			if (temp)
 				free(temp);
 		}
-	if (stack.stack_b)
-		while (stack.stack_b)
+	}
+	if (stack->stack_b)
+	{
+		while (stack->stack_b)
 		{
-			temp = stack.stack_b;
-			stack.stack_b = stack.stack_b->next;
-			if (temp)
+			if (stack->stack_b->next)
+			{
+				temp = stack->stack_b;
+				stack->stack_b = stack->stack_b->next;
 				free(temp);
+			}
+			else
+				free(stack->stack_b);
 		}
+	}
 }
 
 static t_ps_list	*make_stack_a(char **arg)
@@ -93,6 +101,6 @@ int main	(int argc, char *argv[])
 	b_back_to_a(&stacks);
 	minor_to_b(&stacks);
 	b_back_to_a(&stacks);
-	free_stacks(stacks);
+	free_stacks(&stacks);
 	return (0);	
 }

@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 20:11:40 by tsantana          #+#    #+#             */
-/*   Updated: 2024/04/27 14:53:57 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/05 21:00:53 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_ps_list	*new_node(int numb)
 		return (NULL);
 	node->numb = numb;
 	node->next = NULL;
-	node->prev = NULL;
 	return (node);
 }
 
@@ -37,14 +36,10 @@ t_ps_list	*add_back_front(t_ps_list *node, int pstn, t_ps_list *lst)
 		while (temp && temp->next != NULL)
 			temp = temp->next;
 		node->next = NULL;
-		node->prev = temp;
 		temp->next = node;
 		return (lst);
 	}
-	while (lst && lst->prev != NULL)
-		lst = lst->prev;
-	node->next = lst;
-	node->prev = NULL;
-	lst->prev = node;
+	else 
+		node->next = lst;
 	return (node);
 }

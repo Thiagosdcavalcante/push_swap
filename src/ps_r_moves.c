@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:47:14 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/01 22:02:13 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/05 21:15:13 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	rotate(int c, t_ps_list **stack)
 void	move_rr(t_stacks *stack)
 {
 	rotate(1, &stack->stack_a);
-	rotate(1, &stack->stack_b);
+	rotate(2, &stack->stack_b);
    	write (1, "rr\n", 3);
 }

@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:59:27 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/04 21:13:19 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/05 21:07:39 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,12 @@ void	move_rra(t_ps_list **stack_a)
 	if (!(*stack_a))
 		return ;
 	temp1 = (*stack_a);
-	while (temp1->next != NULL)
+	while (temp1->next->next != NULL)
 		temp1 = temp1->next;
-	temp2 = temp1->prev;
-	temp2 ->next = NULL;
-	temp1->next = (*stack_a);
-	temp1->prev = NULL;
-	(*stack_a)->prev = temp1;
-	(*stack_a) = temp1;
+	temp2 = temp1->next;
+	temp2->next = (*stack_a);
+	temp1->next = NULL;
+	(*stack_a) = temp2;
 	write(1, "rra\n", 4);
 }
 
@@ -39,14 +37,12 @@ void	move_rrb(t_ps_list **stack_b)
 	if (!(*stack_b))
 		return ;
 	temp1 = (*stack_b);
-	while (temp1->next != NULL)
+	while (temp1->next->next != NULL)
 		temp1 = temp1->next;
-	temp2 = temp1->prev;
-	temp2 ->next = NULL;
-	temp1->next = (*stack_b);
-	temp1->prev = NULL;
-	(*stack_b)->prev = temp1;
-	(*stack_b) = temp1;
+	temp2 = temp1->next;
+	temp2->next = (*stack_b);
+	temp1->next = NULL;
+	(*stack_b) = temp2;
    	write (1, "rrb\n", 4);
 }
 

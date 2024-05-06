@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:26:16 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/05 17:42:50 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/05 21:59:30 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	ps_mvs_conditions(t_stacks **stks)
 	}
 	else if ((*stks)->stack_b->numb > (*stks)->sup.head_b->numb)
 	{
-		(*stks)->sup.end_b = (*stks)->sup.end_b->prev;
 		rotate(2, &(*stks)->stack_b);	
 		(*stks)->sup.head_b = (*stks)->stack_b;
 	}

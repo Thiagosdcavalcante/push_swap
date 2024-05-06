@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:05:56 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/05 17:05:56 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/05 20:59:36 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct s_ps_list
 {
 	long int			numb;
 	struct s_ps_list	*next;
-	struct s_ps_list	*prev;
 }	t_ps_list;
 
 typedef struct s_support

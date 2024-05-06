@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:01:03 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/05 17:53:23 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/05 21:59:38 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ static void	init_b_again(t_stacks **stk)
 	t_ps_list	*tmp2;
 
 	tmp = (*stk)->stack_a;
-	while (tmp->next)
+	while (tmp->next->next)
 		tmp = tmp->next;
-	tmp2 = tmp->prev;
-	if (tmp2 && tmp2->next)
-		tmp2->next = NULL;
-	(*stk)->stack_b = tmp;
-	(*stk)->stack_b->prev = NULL;
+	tmp2 = tmp->next;
+	(*stk)->stack_b = tmp2;
+	(*stk)->stack_b->next = NULL;
+	tmp->next = NULL;
 	write (1, "rra\n", 4);
 	write (1, "pb\n", 3);
 }
