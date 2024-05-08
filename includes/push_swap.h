@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:05:56 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/05 20:59:36 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:23:27 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ void	ps_mvs_conditions(t_stacks **stks);
 void	divide_stack(t_stacks *stk);
 void	move_pa(t_stacks **stk);
 void	move_pb(t_stacks **stk);
-void	move_sa(t_ps_list *stack_a);
-void	move_sb(t_ps_list *stack_b);
+void	move_sa(t_ps_list *stack_a, t_stacks *stk);
+void	move_sb(t_ps_list *stack_b, t_stacks *stk);
 void	move_ss(t_stacks *stack);
-void	rotate(int c, t_ps_list **stack);
-void	move_rra(t_ps_list **stack_a);
-void	move_rrb(t_ps_list **stack_b);
+void	rotate(int c, t_ps_list **stack, t_stacks *stk);
+void	move_rra(t_ps_list **stack_a, t_stacks *stk);
+void	move_rrb(t_ps_list **stack_b, t_stacks *stk);
 void	move_rrr(t_stacks *stack);
 void	return_error(int error);
 t_ps_list	*new_node(int numb);

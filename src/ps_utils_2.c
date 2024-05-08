@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:01:03 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/05 21:59:38 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:31:23 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static int	is_all_below_in_b(int pvt, t_ps_list *lst)
 	t_ps_list *tmp;
 
 	tmp = lst;
-	while (lst->next)
+	while (tmp->next)
 	{
-		if (lst->numb <= pvt)
+		if (tmp->numb <= pvt)
 			return (1);
-		lst = lst->next;
+		tmp = tmp->next;
 	}
 	return (0);
 }
@@ -53,7 +53,7 @@ void	minor_to_b(t_stacks *stk)
 	while ((stk->stack_a && stk->stack_b) && i != 0)
 	{
 		if (stk->stack_a->numb > stk->pivot)
-			rotate(1, &stk->stack_a);
+			rotate(1, &stk->stack_a, stk);
 		else
 			move_pb(&stk);
 		i = is_all_below_in_b((int)stk->pivot, stk->stack_a);

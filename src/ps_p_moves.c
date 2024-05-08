@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 17:50:16 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/05 21:05:09 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:15:55 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	move_pa(t_stacks **stk)
 	else
 		tmp->next = (*stk)->stack_a;
 	(*stk)->stack_a = tmp;
+	put_sup(stk);
 	write (1, "pa\n", 3);
 }
 
@@ -47,5 +48,6 @@ void	move_pb(t_stacks **stk)
 	else
 		tmp->next = (*stk)->stack_b;
 	(*stk)->stack_b = tmp;
+	put_sup(stk);
 	write (1, "pb\n", 3);
 }
