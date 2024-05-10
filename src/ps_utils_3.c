@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:39:56 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/08 16:15:32 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/09 21:00:59 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,22 @@ static void	put_sup_a(t_ps_list *lst, t_sup sup)
 	sup.head_a = lst;
 }
 
-static void	put_sup_b(t_ps_list *lst, t_sup sup)
+static void	put_sup_b(t_stacks **stk)
 {
 	t_ps_list	*b;
 
-	b = lst;
-	if (lst && !lst->next)
+	if ((*stk)->stack_b && !(*stk)->stack_b->next)
 	{
-		sup.end_b = lst;
-		sup.head_b = lst;
+		(*stk)->sup.end_b = (*stk)->stack_b;
+		(*stk)->sup.head_b = (*stk)->stack_b;
 	}
 	else
 	{
-		if (sup.end_b == NULL)
-			sup.end_b = lst;
+		(*stk)->sup.head_b = (*stk)->stack_b;
+		b = (*stk)->stack_b;
 		while (b->next)
-		{
-			if (b->numb > sup.end_b->numb)
-				sup.end_b = b;
 			b = b->next;
-		}
+		(*stk)->sup.end_b = b;
 	}
 }
 
@@ -66,7 +62,7 @@ void	put_sup(t_stacks **stks)
 {
 	put_sup_a((*stks)->stack_a, (*stks)->sup);
 	if ((*stks)->stack_b)
-		put_sup_b((*stks)->stack_b, (*stks)->sup);
+		put_sup_b(stks);
 	else
 	{
 		(*stks)->sup.end_b = NULL;

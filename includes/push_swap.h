@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:05:56 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/08 16:23:27 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:39:55 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ int		check_args(char *arg);
 int		validation_args(char *args[]);
 int		ft_atol(const char *nptr);
 int		find_target(t_ps_list *lst);
+int		find_distance(t_ps_list **to_find, int target);
+int		find_last_big(t_ps_list *lst, int pvt);
+int		has_bigger(t_ps_list *a, int pivot);
+void	divide_stack(t_stacks *stk);
+void	verify(t_stacks **stk);
+void	test_moves(t_ps_list **a, t_ps_list **b, int pvt, t_stacks *stk);
 void	minor_to_b(t_stacks *stk);
 void	b_back_to_a(t_stacks *stk);
 void	put_sup(t_stacks **stks);
