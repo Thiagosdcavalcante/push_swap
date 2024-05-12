@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:54:48 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/09 22:01:20 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/10 17:10:31 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,31 +49,31 @@ void verify(t_stacks **stk)
 	// }
 }
 
-void	divide_stack(t_stacks *stk)
-{
-	int	i;
-
-	i = 0;
-	while (i == 0)
-	{
-		sup_verify(&stk);
-		if (stk->stack_a->numb > stk->pivot)
-		{
-			move_pb(&stk);
-			verify(&stk);
-		}
-		else
-		{
-			if (find_last_big(stk->stack_a, stk->pivot) > 0)
-				while (stk->stack_a->numb <= stk->pivot)
-					move_rra(&stk->stack_a, stk);
-			else
-				while (stk->stack_a->numb <= stk->pivot)
-					rotate(1, &stk->stack_a, stk);
-		}
-		i = has_bigger(stk->stack_a, stk->pivot);
-	}
-}
+// void	divide_stack(t_stacks *stk)
+// {
+// 	int	i;
+//
+// 	i = 0;
+// 	while (i == 0)
+// 	{
+// 		sup_verify(&stk);
+// 		if (stk->stack_a->numb > stk->pivot)
+// 		{
+// 			move_pb(&stk);
+// 			verify(&stk);
+// 		}
+// 		else
+// 		{
+// 			if (find_last_big(stk->stack_a, stk->pivot) > 0)
+// 				while (stk->stack_a->numb <= stk->pivot)
+// 					move_rra(&stk->stack_a, stk);
+// 			else
+// 				while (stk->stack_a->numb <= stk->pivot)
+// 					rotate(1, &stk->stack_a, stk);
+// 		}
+// 		i = has_bigger(stk->stack_a, stk->pivot);
+// 	}
+// }
 
 static int	validation_item(char *argv)
 {

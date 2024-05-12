@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:03:17 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/09 18:40:07 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/12 04:56:07 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,10 @@ static void	free_stacks(t_stacks *stack)
 	{
 		while (stack->stack_b)
 		{
-			if (stack->stack_b->next)
-			{
 				temp = stack->stack_b;
 				stack->stack_b = stack->stack_b->next;
-				free(temp);
-			}
-			else
-				free(stack->stack_b);
+				if (temp)
+					free(temp);
 		}
 	}
 }
@@ -97,10 +93,12 @@ int main	(int argc, char *argv[])
 		return (1);
 	stacks.stack_a = make_stack_a(argv);
 	init_data(&stacks);
-	divide_stack(&stacks);
-	b_back_to_a(&stacks);
-	minor_to_b(&stacks);
-	b_back_to_a(&stacks);
+	parse_stack(&stacks);
+	end_sort(&stacks);
+	// divide_stack(&stacks);
+	// b_back_to_a(&stacks);
+	// minor_to_b(&stacks);
+	// b_back_to_a(&stacks);
 	free_stacks(&stacks);
 	return (0);	
 }
