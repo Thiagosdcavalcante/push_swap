@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:26:16 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/12 05:07:51 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:55:24 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,13 @@ void	parse_stack(t_stacks *stk)
 	    random_parse(stk);
 }
 
-static int	find_target(t_ps_list *lst)
+static int	find_last_target(t_ps_list *lst, int min)
 {
 	int	target;
 
-	target = 0;
+	target = min;
 	if (lst)
 	{
-		target = lst->numb;
 		while (lst)
 		{
 			if (lst->numb > target)
@@ -56,48 +55,27 @@ static int	find_target(t_ps_list *lst)
 	return (target);
 }
 
-static int	moves_end(t_ps_list *lst, int value)
+static int	moves_to_finish(t_ps_list *lst, int target)
 {
-	t_ps_list	*find;
+	t_ps_list	*srch;
 	int			i;
 	int			j;
 
+	srch = lst;
 	i = 0;
 	j = 0;
-	find = lst;
-	while (find->next && find->numb != value)
+	while (srch->next && srch->numb != target)
 	{
 		i++;
-		find = find->next;
+		srch = srch->next;
 	}
-	while (find->next)
+	while (srch->next)
 	{
 		j++;
-		find = find->next;
+		srch = srch->next;
 	}
-	return (i - j);
+	return (i - (j + 1));
 }
-
-// void	b_back_to_a(t_stacks *stk)
-// {
-// 	int	value;
-//
-// 	while (stk->stack_b)
-// 	{
-// 		else if (stk->stack_b->next && (value == stk->stack_b->next->numb))
-// 		{
-// 			if (stk->stack_a->numb > stk->stack_a->next->numb)
-// 				move_ss(stk);
-// 			else
-// 		     	move_sb(stk->stack_b, stk);
-// 		}
-// 		else if (best_moves(stk->stack_b, value) > 0)
-// 			move_rrb(&stk->stack_b, stk);
-// 		else
-// 			rotate(2, &stk->stack_b, stk);
-// 	}
-// 	stk->stack_b = NULL;
-// }
 
 void	end_sort(t_stacks *stk)
 {
@@ -105,16 +83,19 @@ void	end_sort(t_stacks *stk)
 
 	while (stk->stack_b)
 	{
-		target = find_target(stk->stack_a);
+		target = find_last_target(stk->stack_b, stk->minim);
 		if (stk->stack_b->numb == target)
-			move_pa(&stk);
-		else if (stk->stack_b->next)
 		{
-			if (moves_end(stk->stack_b, target) >= 0)
-				move_rrb(&stk->stack_b, stk);
-			else if (moves_end(stk->stack_b, target) < 0)
-			    rotate(2, &stk->stack_b, stk);
+			move_pa(&stk);
+			if (stk->stack_a->numb > stk->stack_a->next->numb)
+			    move_sa(stk->stack_a, stk);
 		}
+		else if (moves_to_finish(stk->stack_b, target) >= 0 && stk->stack_b->next)
+			while (stk->stack_b->numb != target && stk->stack_b->next)
+				move_rrb(&stk->stack_b, stk);
+		else if (moves_to_finish(stk->stack_b, target) < 0 && stk->stack_b->next)
+			while (stk->stack_b->numb != target && stk->stack_b->next)
+				rotate(2, &stk->stack_b, stk);
 	}
 	stk->stack_b = NULL;
 }

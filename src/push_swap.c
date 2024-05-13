@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:03:17 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/12 04:56:07 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:55:37 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,6 @@ int main	(int argc, char *argv[])
 	init_data(&stacks);
 	parse_stack(&stacks);
 	end_sort(&stacks);
-	// divide_stack(&stacks);
-	// b_back_to_a(&stacks);
-	// minor_to_b(&stacks);
-	// b_back_to_a(&stacks);
 	free_stacks(&stacks);
 	return (0);	
 }
