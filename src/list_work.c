@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 20:11:40 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/05 21:00:53 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:24:45 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_ps_list	*add_back_front(t_ps_list *node, int pstn, t_ps_list *lst)
 		temp->next = node;
 		return (lst);
 	}
-	else 
+	else
 		node->next = lst;
 	return (node);
 }

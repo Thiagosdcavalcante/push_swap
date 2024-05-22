@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 17:50:16 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/08 16:15:55 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:25:43 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	move_pa(t_stacks **stk)
 {
-		t_ps_list	*tmp;
+	t_ps_list	*tmp;
 
 	if (!(*stk)->stack_b)
 		return ;
-	tmp =(*stk)->stack_b;
+	tmp = (*stk)->stack_b;
 	(*stk)->stack_b = (*stk)->stack_b->next;
 	if ((*stk)->stack_a == NULL)
 	{
@@ -38,7 +38,7 @@ void	move_pb(t_stacks **stk)
 
 	if (!(*stk)->stack_a)
 		return ;
-	tmp =(*stk)->stack_a;
+	tmp = (*stk)->stack_a;
 	(*stk)->stack_a = (*stk)->stack_a->next;
 	if ((*stk)->stack_b == NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:04:42 by tsantana          #+#    #+#             */
-/*   Updated: 2023/11/04 18:14:21 by tsantana         ###   ########.org.br   */
+/*   Updated: 2024/05/14 15:22:55 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	int	i;
 	int	size;
 
-	i = 0;
 	size = ft_strlen(s);
 	write (fd, s, size);
 }

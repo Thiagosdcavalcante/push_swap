@@ -6,17 +6,17 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 20:13:08 by tsantana          #+#    #+#             */
-/*   Updated: 2024/04/23 20:24:01 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:18:59 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	ft_atol(const char *nptr)
+long	ft_atol(const char *nptr)
 {
 	long int	result;
-	int	i;
-	int	sign;
+	int			i;
+	int			sign;
 
 	result = 0;
 	i = 0;
@@ -34,5 +34,5 @@ int	ft_atol(const char *nptr)
 		result = result * 10 + (nptr[i] - '0');
 		i++;
 	}
-	return (result * sign);
+	return ((long)result * sign);
 }

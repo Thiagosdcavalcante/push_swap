@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:26:16 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/13 15:55:24 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:30:13 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	parse_stack(t_stacks *stk)
 	int	size;
 
 	size = find_size(stk);
-	if (size <= 10)
-		parse_5(stk);
+	if (size <= 5)
+		parse_5(stk, size);
 	else
-	    random_parse(stk);
+		random_parse(stk);
 }
 
 static int	find_last_target(t_ps_list *lst, int min)
@@ -88,14 +88,18 @@ void	end_sort(t_stacks *stk)
 		{
 			move_pa(&stk);
 			if (stk->stack_a->numb > stk->stack_a->next->numb)
-			    move_sa(stk->stack_a, stk);
+				move_sa(stk->stack_a, stk);
 		}
-		else if (moves_to_finish(stk->stack_b, target) >= 0 && stk->stack_b->next)
+		else if (moves_to_finish(stk->stack_b, target) >= 0
+			&& stk->stack_b->next)
 			while (stk->stack_b->numb != target && stk->stack_b->next)
 				move_rrb(&stk->stack_b, stk);
-		else if (moves_to_finish(stk->stack_b, target) < 0 && stk->stack_b->next)
+		else if (moves_to_finish(stk->stack_b, target) < 0
+			&& stk->stack_b->next)
 			while (stk->stack_b->numb != target && stk->stack_b->next)
 				rotate(2, &stk->stack_b, stk);
+		else
+			move_pa(&stk);
 	}
 	stk->stack_b = NULL;
 }

@@ -6,76 +6,99 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:02:19 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/10 15:11:30 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:24:31 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int   find_bigger(t_ps_list *lst)
+int	minor_moves(t_ps_list *lst, int pvt, int size)
 {
-	int bigger;
-	t_ps_list *find;
+	t_ps_list	*srch;
+	int			i;
 
-	bigger = 1;
-	find = lst;
-	while (find)
+	srch = lst;
+	i = 0;
+	while (srch && srch->numb != pvt)
 	{
-		if (find->numb > bigger)
-			bigger = find->numb;
-		find = find->next;
+		i++;
+		srch = srch->next;
 	}
-	return (bigger);
+	return (size - i);
 }
 
-static void parse_back(t_stacks  *stk)
+static int	find_minor_five(t_stacks *stk)
 {
-	int bigger;
+	t_ps_list	*a;
+	int			result;
 
-	while (stk->stack_b)
-   	{
-		bigger = find_bigger(stk->stack_b);
-        while (stk->stack_b->numb != bigger)
-			rotate(2, &stk->stack_b, stk);
-		move_pa(&stk);
-	}
-	stk->stack_b = NULL;
-}
-
-static int  find_minor(t_ps_list *lst)
-{
-	t_ps_list *find;
-	int result;
-
-	find = lst;
-	result = lst->numb;
-	while (find)
+	a = stk->stack_a;
+	result = stk->maxm;
+	while (a)
 	{
-		if (find->numb < result)
-			result = find->numb;
-		find = find->next;
+		if (a->numb < result)
+			result = a->numb;
+		a = a->next;
 	}
 	return (result);
 }
 
-void	parse_5(t_stacks *stk)
+void	solve_three(t_stacks *stk)
 {
-	int   trgt;
-	
-	while (stk->stack_a && stk->stack_a->next)
+	if (stk->stack_a->numb < stk->stack_a->next->numb
+		&& stk->stack_a->numb > stk->stack_a->next->next->numb)
+		move_rra(&stk->stack_a, stk);
+	else if (stk->stack_a->numb > stk->stack_a->next->numb
+		&& stk->stack_a->next->numb > stk->stack_a->next->next->numb)
 	{
-		trgt = find_minor(stk->stack_a);
-		while (stk->stack_a->numb != trgt)
-		{
-			if (stk->stack_a->numb < stk->stack_a->next->numb)
-				move_sa(stk->stack_a, stk);
-			move_rra(&stk->stack_a, stk);
-		}
-		move_pb(&stk);
+		move_sa(stk->stack_a, stk);
+		move_rra(&stk->stack_a, stk);
 	}
-	if (stk->stack_a->numb == stk->maxm)
-		parse_back(stk);
-	else
-		move_pa(&stk);
+	else if (stk->stack_a->numb < stk->stack_a->next->numb
+		&& stk->stack_a->next->numb > stk->stack_a->next->next->numb
+		&& stk->stack_a->numb < stk->stack_a->next->next->numb)
+	{
+		move_rra(&stk->stack_a, stk);
+		move_sa(stk->stack_a, stk);
+	}
+	else if (stk->stack_a->numb > stk->stack_a->next->numb
+		&& stk->stack_a->numb < stk->stack_a->next->next->numb)
+		move_sa(stk->stack_a, stk);
+	else if (stk->stack_a->numb > stk->stack_a->next->next->numb
+		&& stk->stack_a->next->numb < stk->stack_a->next->next->numb)
+		rotate(1, &stk->stack_a, stk);
 }
 
+static void	four_or_five(t_stacks *stk, int index)
+{
+	int	minor;
+
+	minor = stk->minim;
+	if (index == 4)
+		sort_four(stk, minor);
+	else if (index == 5)
+	{
+		if (stk->stack_a->numb == minor)
+			move_pb(&stk);
+		else
+			four_five_utils(stk, minor, index);
+		minor = find_minor_five(stk);
+		while (stk->stack_a->numb != minor)
+			move_rra(&stk->stack_a, stk);
+		move_pb(&stk);
+		solve_three(stk);
+		move_pa(&stk);
+		move_pa(&stk);
+	}
+}
+
+void	parse_5(t_stacks *stk, int size)
+{
+	if (size == 3)
+		solve_three(stk);
+	else if (size >= 4 && size <= 5)
+		four_or_five(stk, size);
+	else
+		if (stk->stack_a->next && stk->stack_a->numb > stk->stack_a->next->numb)
+			move_sa(stk->stack_a, stk);
+}

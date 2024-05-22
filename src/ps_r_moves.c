@@ -6,7 +6,7 @@
 /*   By: tsantana <tsantana@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:47:14 by tsantana          #+#    #+#             */
-/*   Updated: 2024/05/09 22:07:06 by tsantana         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:27:03 by tsantana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ void	move_rr(t_stacks *stack)
 {
 	rotate(1, &stack->stack_a, stack);
 	rotate(2, &stack->stack_b, stack);
-   	write (1, "rr\n", 3);
+	write (1, "rr\n", 3);
 }
